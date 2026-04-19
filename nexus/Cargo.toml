@@ -1,0 +1,11 @@
+[package]
+name = "nexus"
+version = "0.1.0"
+edition = "2021"
+description = "Nexus Precausal Buffer – deterministic temporal lookahead"
+license = "MIT"
+
+[dependencies]
+eira = { path = "../eira" }
+chrono = { workspace = true }
+serde = { workspace = true }
