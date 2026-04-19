@@ -40,6 +40,12 @@ pub mod industrial_kernel {
         pub processors: Vec<AutonomousDecisionMaker>,
     }
 
+    impl Default for IndustrialKernel {
+        fn default() -> Self {
+            Self::new()
+        }
+    }
+
     impl IndustrialKernel {
         /// Creates a new industrial kernel.
         pub fn new() -> Self {
@@ -53,7 +59,7 @@ pub mod industrial_kernel {
             self.processors.push(decision_maker);
         }
 
-        /// Executes all decision makers.
+        /// Executes all decision makers deterministically in registration order.
         pub fn execute(&self) {
             for processor in &self.processors {
                 println!("{}", processor.decide());
@@ -61,6 +67,11 @@ pub mod industrial_kernel {
         }
     }
 }
+
+/// The Sovereign Industrial Kernel – deterministic autonomous processor management.
+///
+/// Alias for the underlying `IndustrialKernel` exposed at crate level.
+pub use industrial_kernel::IndustrialKernel as SovereignIndustrialKernel;
 
 // Unit tests
 #[cfg(test)]
