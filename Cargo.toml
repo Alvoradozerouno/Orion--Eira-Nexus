@@ -1,8 +1,10 @@
 [workspace]
-members = [
-    "core",
-    "eira",
-    "physics",
-    "nexus",
-    "terminal"
-]
+members = ["core", "eira", "physics", "nexus", "terminal"]
+resolver = "2"
+
+[workspace.dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = "0.4"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+tokio = { version = "1.0", features = ["full"] }
