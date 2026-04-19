@@ -1,0 +1,34 @@
+[workspace]
+members = ["eira", "core", "physics", "nexus", "terminal"]
+resolver = "2"
+
+[package]
+name = "orion-eira-nexus"
+version = "0.1.0"
+edition = "2021"
+description = "Autonomous ORION agent under strict EIRA policy gate control"
+license = "MIT"
+repository = "https://github.com/Alvoradozerouno/Orion--Eira-Nexus"
+
+[[bin]]
+name = "orion-eira-nexus"
+path = "src/main.rs"
+
+[lib]
+name = "orion_eira_nexus"
+path = "src/lib.rs"
+
+[dependencies]
+eira = { path = "eira" }
+core_crate = { path = "core", package = "core" }
+physics = { path = "physics" }
+nexus = { path = "nexus" }
+terminal = { path = "terminal" }
+chrono = { version = "0.4", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[workspace.dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

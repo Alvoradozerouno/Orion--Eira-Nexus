@@ -1,0 +1,11 @@
+[package]
+name = "eira"
+version = "0.1.0"
+edition = "2021"
+description = "EIRA Policy Gate – Safety Layer for the Orion autonomous agent"
+license = "MIT"
+
+[dependencies]
+chrono = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

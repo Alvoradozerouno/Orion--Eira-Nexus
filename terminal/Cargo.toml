@@ -1,0 +1,13 @@
+[package]
+name = "terminal"
+version = "0.1.0"
+edition = "2021"
+description = "Terminal UI for the Orion–EIRA–Nexus system"
+license = "MIT"
+
+[dependencies]
+eira = { path = "../eira" }
+core_crate = { path = "../core", package = "core" }
+nexus = { path = "../nexus" }
+chrono = { workspace = true }
+serde_json = { workspace = true }

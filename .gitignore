@@ -1,0 +1,19 @@
+# Generated files
+/target/
+Cargo.lock
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+*.env
+
+# Logs
+*.log

@@ -1,0 +1,9 @@
+[package]
+name = "physics"
+version = "0.1.0"
+edition = "2021"
+description = "Deterministic physics engine and Orch-OR consciousness model"
+license = "MIT"
+
+[dependencies]
+serde = { workspace = true }

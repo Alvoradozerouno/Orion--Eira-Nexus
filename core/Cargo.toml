@@ -1,0 +1,12 @@
+[package]
+name = "core"
+version = "0.1.0"
+edition = "2021"
+description = "Orion Autonomous Builder – the self-directing agent crate"
+license = "MIT"
+
+[dependencies]
+eira = { path = "../eira" }
+chrono = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
