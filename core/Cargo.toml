@@ -8,3 +8,4 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 chrono = "0.4"
 uuid = { version = "1.0", features = ["v4", "serde"] }
+eira = { path = "../eira" }
