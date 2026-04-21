@@ -120,8 +120,7 @@ impl OrchOrSimulator {
             match mt.tubulin_state {
                 TubulinState::Superposition => {
                     // Accumulate gravitational self-energy
-                    mt.accumulated_e_g +=
-                        E_G_PER_TUBULIN * mt.num_tubulins as f64 * dt;
+                    mt.accumulated_e_g += E_G_PER_TUBULIN * mt.num_tubulins as f64 * dt;
                     mt.coherence_time += dt;
 
                     if mt.threshold_reached() {
@@ -136,12 +135,7 @@ impl OrchOrSimulator {
                             TubulinState::AlphaUp
                         };
 
-                        Self::record_collapse(
-                            &mut self.collapse_log,
-                            mt,
-                            self.time,
-                            post_state,
-                        );
+                        Self::record_collapse(&mut self.collapse_log, mt, self.time, post_state);
                     }
                 }
                 TubulinState::AlphaUp => {

@@ -2,4 +2,4 @@
 
 pub mod orion_autonomous_builder;
 
-pub use orion_autonomous_builder::{OrionAutonomousBuilder, BuilderConfig, AnalysisReport};
+pub use orion_autonomous_builder::{AnalysisReport, BuilderConfig, OrionAutonomousBuilder};

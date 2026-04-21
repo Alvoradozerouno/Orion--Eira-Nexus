@@ -16,7 +16,11 @@ pub struct Vector3D {
 
 impl Vector3D {
     /// The zero vector.
-    pub const ZERO: Self = Self { x: 0.0, y: 0.0, z: 0.0 };
+    pub const ZERO: Self = Self {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0,
+    };
 
     pub fn new(x: f64, y: f64, z: f64) -> Self {
         Self { x, y, z }
@@ -69,17 +73,23 @@ impl Vector3D {
 
 impl std::ops::Add for Vector3D {
     type Output = Self;
-    fn add(self, rhs: Self) -> Self { Vector3D::add(&self, &rhs) }
+    fn add(self, rhs: Self) -> Self {
+        Vector3D::add(&self, &rhs)
+    }
 }
 
 impl std::ops::Sub for Vector3D {
     type Output = Self;
-    fn sub(self, rhs: Self) -> Self { Vector3D::sub(&self, &rhs) }
+    fn sub(self, rhs: Self) -> Self {
+        Vector3D::sub(&self, &rhs)
+    }
 }
 
 impl std::ops::Mul<f64> for Vector3D {
     type Output = Self;
-    fn mul(self, s: f64) -> Self { self.scale(s) }
+    fn mul(self, s: f64) -> Self {
+        self.scale(s)
+    }
 }
 
 /// A rigid body participating in the simulation.
@@ -132,7 +142,11 @@ pub struct PhysicsEngine {
 impl PhysicsEngine {
     /// Create a new engine with the given bodies.
     pub fn new(bodies: Vec<Body>) -> Self {
-        Self { bodies, time: 0.0, steps: 0 }
+        Self {
+            bodies,
+            time: 0.0,
+            steps: 0,
+        }
     }
 
     /// Advance the simulation by one time step `dt` (seconds).

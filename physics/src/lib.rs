@@ -3,5 +3,5 @@
 pub mod engine;
 pub mod orch_or;
 
-pub use engine::{PhysicsEngine, Vector3D, Body};
-pub use orch_or::{OrchOrSimulator, MicrotubuleState, QuantumCollapseEvent};
+pub use engine::{Body, PhysicsEngine, Vector3D};
+pub use orch_or::{MicrotubuleState, OrchOrSimulator, QuantumCollapseEvent};

@@ -24,7 +24,11 @@ pub struct StateSnapshot {
 
 impl StateSnapshot {
     pub fn new(tick: u64, values: Vec<f64>, label: impl Into<String>) -> Self {
-        Self { tick, values, label: label.into() }
+        Self {
+            tick,
+            values,
+            label: label.into(),
+        }
     }
 }
 
@@ -174,7 +178,12 @@ pub fn linear_trend_rule(dim: usize) -> InferenceRule {
     InferenceRule::new(
         "linear_trend",
         2,
-        move |history| history.last().map(|s| s.values.len() == dim).unwrap_or(false),
+        move |history| {
+            history
+                .last()
+                .map(|s| s.values.len() == dim)
+                .unwrap_or(false)
+        },
         move |history| {
             let n = history.len();
             let last = &history[n - 1];

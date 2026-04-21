@@ -7,5 +7,5 @@
 pub mod policy_gate;
 pub mod sik;
 
-pub use policy_gate::{PolicyGate, Proposal, Decision, EpistemicState};
+pub use policy_gate::{Decision, EpistemicState, PolicyGate, Proposal};
 pub use sik::SovereignIndustrialKernel;
