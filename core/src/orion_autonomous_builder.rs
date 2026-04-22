@@ -35,7 +35,12 @@ impl AnalysisReport {
         let total_lines: usize = modules.iter().map(|m| m.lines_of_code).sum();
         let modules_missing_tests = modules.iter().filter(|m| !m.has_tests).count();
         let total_issues: usize = modules.iter().map(|m| m.issues.len()).sum();
-        Self { modules, total_lines, modules_missing_tests, total_issues }
+        Self {
+            modules,
+            total_lines,
+            modules_missing_tests,
+            total_issues,
+        }
     }
 }
 
@@ -107,7 +112,10 @@ impl OrionAutonomousBuilder {
 
         if report.modules_missing_tests > 0 {
             proposals.push((
-                format!("Add tests to {} untested modules", report.modules_missing_tests),
+                format!(
+                    "Add tests to {} untested modules",
+                    report.modules_missing_tests
+                ),
                 "Modules without tests cannot be safely modified. \
                  Adding tests is the highest-priority reliability improvement."
                     .to_string(),
@@ -131,7 +139,9 @@ impl OrionAutonomousBuilder {
 
         // Sort by confidence descending (deterministic ordering)
         proposals.sort_by(|(_, _, conf_a), (_, _, conf_b)| {
-            conf_b.partial_cmp(conf_a).unwrap_or(std::cmp::Ordering::Equal)
+            conf_b
+                .partial_cmp(conf_a)
+                .unwrap_or(std::cmp::Ordering::Equal)
         });
         proposals
     }

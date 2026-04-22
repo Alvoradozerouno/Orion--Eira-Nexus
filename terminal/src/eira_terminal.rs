@@ -17,16 +17,28 @@ pub struct TerminalLine {
 
 impl TerminalLine {
     pub fn info(content: impl Into<String>) -> Self {
-        Self { prefix: "[INFO]", content: content.into() }
+        Self {
+            prefix: "[INFO]",
+            content: content.into(),
+        }
     }
     pub fn ok(content: impl Into<String>) -> Self {
-        Self { prefix: "[ OK ]", content: content.into() }
+        Self {
+            prefix: "[ OK ]",
+            content: content.into(),
+        }
     }
     pub fn warn(content: impl Into<String>) -> Self {
-        Self { prefix: "[WARN]", content: content.into() }
+        Self {
+            prefix: "[WARN]",
+            content: content.into(),
+        }
     }
     pub fn err(content: impl Into<String>) -> Self {
-        Self { prefix: "[ERR ]", content: content.into() }
+        Self {
+            prefix: "[ERR ]",
+            content: content.into(),
+        }
     }
 
     pub fn render(&self) -> String {
@@ -79,9 +91,8 @@ impl EiraTerminal {
             EpistemicState::VerifiedStable => "VerifiedStable",
             EpistemicState::Contradiction => "Contradiction",
         };
-        self.output_buffer.push(TerminalLine::info(
-            format!("Epistemic state → {}", label),
-        ));
+        self.output_buffer
+            .push(TerminalLine::info(format!("Epistemic state → {}", label)));
     }
 
     /// Submit a proposal and display the decision.
@@ -115,18 +126,10 @@ impl EiraTerminal {
         let decision = self.gate.evaluate(proposal);
 
         let line = match &decision {
-            Decision::Approved => {
-                TerminalLine::ok(format!("#{} → APPROVED", id))
-            }
-            Decision::RequestInfo => {
-                TerminalLine::warn(format!("#{} → REQUEST_INFO", id))
-            }
-            Decision::Abstain => {
-                TerminalLine::warn(format!("#{} → ABSTAIN (gate uncertain)", id))
-            }
-            Decision::Rejected => {
-                TerminalLine::err(format!("#{} → REJECTED", id))
-            }
+            Decision::Approved => TerminalLine::ok(format!("#{} → APPROVED", id)),
+            Decision::RequestInfo => TerminalLine::warn(format!("#{} → REQUEST_INFO", id)),
+            Decision::Abstain => TerminalLine::warn(format!("#{} → ABSTAIN (gate uncertain)", id)),
+            Decision::Rejected => TerminalLine::err(format!("#{} → REJECTED", id)),
         };
         self.output_buffer.push(line);
         decision
@@ -135,9 +138,10 @@ impl EiraTerminal {
     /// Print a formatted ASCII audit trail.
     pub fn show_audit_trail(&mut self) {
         let log = self.gate.audit_log();
-        self.output_buffer.push(TerminalLine::info(
-            format!("── Audit Trail ({} entries) ──", log.len()),
-        ));
+        self.output_buffer.push(TerminalLine::info(format!(
+            "── Audit Trail ({} entries) ──",
+            log.len()
+        )));
         for entry in log {
             let decision_label = match &entry.decision {
                 Decision::Approved => "APPROVED",
@@ -152,10 +156,7 @@ impl EiraTerminal {
             };
             self.output_buffer.push(TerminalLine::info(format!(
                 "  #{:<4} | {:12} | state={} | \"{}\"",
-                entry.proposal.id,
-                decision_label,
-                state_label,
-                entry.proposal.action,
+                entry.proposal.id, decision_label, state_label, entry.proposal.action,
             )));
         }
     }
@@ -201,7 +202,11 @@ mod tests {
         let t = EiraTerminal::new();
         let output = t.peek_output();
         assert!(!output.is_empty());
-        let joined: String = output.iter().map(|l| l.render()).collect::<Vec<_>>().join("\n");
+        let joined: String = output
+            .iter()
+            .map(|l| l.render())
+            .collect::<Vec<_>>()
+            .join("\n");
         assert!(joined.contains("EIRA Terminal"));
     }
 
@@ -229,7 +234,11 @@ mod tests {
         t.show_audit_trail();
         let out = t.peek_output();
         assert!(!out.is_empty());
-        let joined: String = out.iter().map(|l| l.render()).collect::<Vec<_>>().join("\n");
+        let joined: String = out
+            .iter()
+            .map(|l| l.render())
+            .collect::<Vec<_>>()
+            .join("\n");
         assert!(joined.contains("Audit Trail"));
     }
 

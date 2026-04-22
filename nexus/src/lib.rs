@@ -2,4 +2,4 @@
 
 pub mod precausal_buffer;
 
-pub use precausal_buffer::{PrecausalBuffer, StateSnapshot, InferenceResult};
+pub use precausal_buffer::{InferenceResult, PrecausalBuffer, StateSnapshot};
