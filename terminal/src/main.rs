@@ -16,8 +16,9 @@ fn main() {
     // --- Demo workflow ---
 
     // Step 1: register a user and log in
-    term.register_user("orion", "eira-nexus-2026");
-    term.login("orion", "eira-nexus-2026");
+    // NOTE: these are demonstration-only credentials — do not use in production.
+    term.register_user("demo_user", "demo_password");
+    term.login("demo_user", "demo_password");
     for line in term.flush() {
         println!("{}", line.render());
     }

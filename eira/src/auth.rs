@@ -11,8 +11,16 @@
 /// Deterministic FNV-1a (64-bit) hash of `input`.
 ///
 /// Identical input always produces identical output; different inputs produce
-/// statistically distinct outputs. This is not a cryptographic hash — it is used
-/// here as a lightweight deterministic credential verifier in a demonstration context.
+/// statistically distinct outputs.
+///
+/// # ⚠ Demonstration context only
+///
+/// FNV-1a is **not** a cryptographic password hash. It has no salt, no
+/// computational cost, and is trivially brute-forceable. It is used here
+/// solely to satisfy the system's zero-randomness constraint in a
+/// demonstration environment. **Never use this in a production system.**
+/// Production deployments must replace this with a proper password-hashing
+/// scheme (e.g. Argon2, bcrypt, or PBKDF2).
 fn fnv1a_hash(input: &str) -> u64 {
     const OFFSET_BASIS: u64 = 14_695_981_039_346_656_037;
     const PRIME: u64 = 1_099_511_628_211;
