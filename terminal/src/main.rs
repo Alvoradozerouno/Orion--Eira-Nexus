@@ -1,7 +1,7 @@
 //! EIRA Terminal — binary entry point.
 //!
 //! Launches an interactive session demonstrating the EIRA Policy Gate
-//! decision workflow with audit trail visualisation.
+//! decision workflow with user authentication and audit trail visualisation.
 
 use terminal::EiraTerminal;
 
@@ -15,13 +15,20 @@ fn main() {
 
     // --- Demo workflow ---
 
-    // Step 1: advance epistemic state to VerifiedStable
+    // Step 1: register a user and log in
+    term.register_user("orion", "eira-nexus-2026");
+    term.login("orion", "eira-nexus-2026");
+    for line in term.flush() {
+        println!("{}", line.render());
+    }
+
+    // Step 2: advance epistemic state to VerifiedStable
     term.set_epistemic_state(true);
     for line in term.flush() {
         println!("{}", line.render());
     }
 
-    // Step 2: submit a high-confidence proposal
+    // Step 3: submit a high-confidence proposal
     term.submit(
         "Refactor physics::engine — extract Vector3D arithmetic",
         "The Vector3D helper functions are duplicated in three places. \
@@ -34,7 +41,7 @@ fn main() {
         println!("{}", line.render());
     }
 
-    // Step 3: submit a low-confidence proposal → RequestInfo
+    // Step 4: submit a low-confidence proposal → RequestInfo
     term.submit(
         "Enable GPU acceleration",
         "Potential performance improvement.",
@@ -45,14 +52,32 @@ fn main() {
         println!("{}", line.render());
     }
 
-    // Step 4: show full audit trail
+    // Step 5: show full proposal audit trail
     term.show_audit_trail();
     for line in term.flush() {
         println!("{}", line.render());
     }
 
-    // Step 5: status summary
+    // Step 6: show login audit log
+    term.show_login_log();
+    for line in term.flush() {
+        println!("{}", line.render());
+    }
+
+    // Step 7: status summary (includes logged-in user)
     term.show_status();
+    for line in term.flush() {
+        println!("{}", line.render());
+    }
+
+    // Step 8: log out and verify proposals are blocked
+    term.logout();
+    term.submit(
+        "Unauthenticated proposal",
+        "This should be rejected.",
+        0.95,
+        vec![],
+    );
     for line in term.flush() {
         println!("{}", line.render());
     }

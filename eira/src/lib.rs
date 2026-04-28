@@ -4,8 +4,10 @@
 //! The core safety mechanism that controls all autonomous decisions
 //! through deterministic epistemic state management and verification.
 
+pub mod auth;
 pub mod policy_gate;
 pub mod sik;
 
+pub use auth::{LoginRecord, UserRegistry};
 pub use policy_gate::{Decision, EpistemicState, PolicyGate, Proposal};
 pub use sik::SovereignIndustrialKernel;
